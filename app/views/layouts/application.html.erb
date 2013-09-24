@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html class="application-layout">
+  <head>
+    <title><%= Rails.application.config.title %> | <%= @page.title %></title>
+    <meta charset="UTF-8">
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+
+    <header><%= Rails.application.config.title %></header>
+
+    <nav>
+      <%= link_to 'Home', root_path %>
+      <% Page.published.not_home.each do |page| -%>
+        <%= link_to page.title, page %>
+      <% end -%>
+    </nav>
+
+    <main role="main">
+      <%= yield %>
+    </main>
+
+    <footer>Copyright 2013</footer>    
+
+  </body>
+</html>
